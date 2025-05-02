@@ -50,7 +50,7 @@ chatSDK.handleMessageReceived((action, message) => {
                 userNickname: donationNickname,
                 count: message.count
             };
-            uwb.ExecuteJsMethod('OnDonation', donationData);
+            uwb.ExecuteJsMethod('OnDonationReceived', donationData);
             break;
         default:
             break;
@@ -61,7 +61,7 @@ Unity에서 JS측의 메세지를 받으려면 ```RegisterJsMethod(string, Actio
 JS측에서 Unity로 메세지를 보내려면 ```uwb.ExecuteJsMethod(method, arguments)``` 메서드를 호출하면 됩니다.
 ```C#
 UWBClient.RegisterJsMethod<ChatData>("OnMessageReceived", OnMessageReceived);
-UWBClient.RegisterJsMethod<DonationData>("OnDonation", OnDonationReceived);
+UWBClient.RegisterJsMethod<DonationData>("OnDonationReceived", OnDonationReceived);
 
 private void OnMessageReceived(ChatData data)
 {

@@ -49,7 +49,7 @@ public class APIConnecter : MonoBehaviour
         UWBClient.RegisterJsMethod<string>("OnChatConnected", OnChatConnected);
         UWBClient.RegisterJsMethod<string>("OnChatError", OnChatError);
         UWBClient.RegisterJsMethod<ChatData>("OnMessageReceived", OnMessageReceived);
-        UWBClient.RegisterJsMethod<DonationData>("OnDonation", OnDonationReceived);
+        UWBClient.RegisterJsMethod<DonationData>("OnDonationReceived", OnDonationReceived);
     }
 
     private void OnDestroy()
@@ -294,7 +294,7 @@ public class APIConnecter : MonoBehaviour
                                 userNickname: donationNickname,
                                 count: message.count
                             };
-                            uwb.ExecuteJsMethod('OnDonation', donationData);
+                            uwb.ExecuteJsMethod('OnDonationReceived', donationData);
                             break;
                         default:
                             break;
