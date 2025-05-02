@@ -6,7 +6,6 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 using VoltstroStudios.UnityWebBrowser.Core;
-using PimDeWitte.UnityMainThreadDispatcher;
 
 public class APIConnecter : MonoBehaviour
 {
@@ -146,7 +145,7 @@ public class APIConnecter : MonoBehaviour
         this.code = code;
         isCode = true;
 
-        UnityMainThreadDispatcher.Instance().Enqueue(() => GetToken());
+        GetToken();
     }
 
     public void GetToken()
