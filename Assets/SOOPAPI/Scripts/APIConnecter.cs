@@ -120,10 +120,13 @@ public class APIConnecter : MonoBehaviour
     {
         if (!isReady) return;
 
-        listener = new HttpListener();
-        listener.Prefixes.Add(redirectURL);
-        listener.Start();
-        listener.BeginGetContext(GetCode, listener);
+        if (listener == null || !listener.IsListening)
+        {
+            listener = new HttpListener();
+            listener.Prefixes.Add(redirectURL);
+            listener.Start();
+            listener.BeginGetContext(GetCode, listener);
+        }
 
         string authUrl = $"https://login.sooplive.co.kr/afreeca/login.php?szFrom=oAuth&request_uri={requestURL}auth/code?client_id={id}";
         Application.OpenURL(authUrl);
